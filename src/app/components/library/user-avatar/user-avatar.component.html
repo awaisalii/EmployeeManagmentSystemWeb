@@ -1,0 +1,6 @@
+<div class="circle">
+  <img *ngIf="userImageUrl; else initials" [src]="'https://localhost:7098/uploads/images/' + userImageUrl" alt="User Avatar" />
+  <ng-template #initials>
+    <span>{{ dataLetters }}</span>
+  </ng-template>
+</div>

@@ -1,0 +1,27 @@
+<dx-load-panel
+  [visible]="isLoading"
+  [showIndicator]="true"
+  [shadingColor]="'rgba(0,0,0,0.4)'"
+  [position]="'center'">
+</dx-load-panel>
+<div *ngIf="!isLoading && activities.length > 0" class="view-wrapper responsive-paddings" style="padding-bottom: 9px !important;">
+<dx-toolbar class="theme-dependent " [class.scrolled]="isContentScrolled"  >
+    <dxi-item location="before">
+        <div class="header-text " > Notifications</div>
+      </dxi-item>
+      <dxi-item location="after">
+        <div class="header-text " style="color: red;" >{{activities.length}}</div>
+      </dxi-item>
+
+    </dx-toolbar>
+  </div>
+  <dx-scroll-view *ngIf="!isLoading && activities.length > 0" class="view-wrapper-scroll responsive-paddings " style="padding-top: 0px !important;">
+   <div  class="content-block dx-card responsive-paddings" style="padding-top: 0px !important;" >
+
+    <card-activities
+    [activities]="activities"
+    [showBy]="true"
+    [isLoading]="isLoading"
+  ></card-activities>
+   </div>
+  </dx-scroll-view>

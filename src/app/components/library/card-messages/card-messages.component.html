@@ -1,0 +1,80 @@
+<dx-validation-group>
+  <div class="messages">
+    <div class="input-content  "  >
+      <!-- <dx-text-box
+        label="Subject"
+        stylingMode="filled"
+        [(value)]="messageTitle"
+      >
+        <dx-validator>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dx-validator>
+      </dx-text-box> -->
+      <dx-text-area
+        stylingMode="filled"
+        [(value)]="messageText"
+        [autoResizeEnabled]="false"
+        [height]="10+'vh'"
+      >
+        <!-- <dx-validator>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dx-validator> -->
+      </dx-text-area>
+      <dx-toolbar>
+        <dxi-item location="before">
+          <dx-file-uploader
+            class="file-uploader"
+            labelText=""
+            [showFileList]="false"
+            selectButtonText="Attach file"
+          >
+          </dx-file-uploader>
+        </dxi-item>
+        <dxi-item
+          location="after"
+          widget="dxButton"
+          [options]="{
+            text: 'Send',
+            stylingMode: 'contained',
+            type: 'default',
+            onClick: sendMassage
+          }"
+        >
+        </dxi-item>
+      </dx-toolbar>
+    </div>
+    <div class="messages-content" style="height: 80vh;" >
+        <div #scrollContainer style="height: 55vh;overflow-y: scroll;" (scroll)="onScroll()" >
+        <div class="message-list" >
+            <div  *ngFor="let data of messages" >
+              <div class="message-container"
+              [ngClass]="{'sent': data.user === currentUser, 'received': data.user !== currentUser}">
+              <div  style="display: flex;" [ngStyle]="{'flex-direction': data.user === currentUser ? 'row-reverse' : 'row'}">
+                <div class="profile-icon">
+                  <img *ngIf="data.imagePath; else initials" [src]="'https://localhost:7098/uploads/images/'+data.imagePath" alt="User Avatar" />
+                  <ng-template #initials>
+                    <span><img  [src]="'https://localhost:7098/uploads/images/nouser.jpeg'" alt="User Avatar" /></span>
+                  </ng-template>
+                </div>
+
+                <div class="message dx-card" style="min-width: 250px!important;" >
+                  <div class="message-title">
+                    <div>
+                      <div class="subject">{{ data.subject }}</div>
+                      <div>{{ data.date | date: 'MM/dd/y' }} - {{ data.user }}</div>
+                    </div>
+                    <div>
+                      <dx-button icon="overflow" stylingMode="text"></dx-button>
+                    </div>
+                  </div>
+                  <div class="message-text">{{ data.message }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </dx-scroll-view> -->
+    </div>
+  </div>
+</dx-validation-group>

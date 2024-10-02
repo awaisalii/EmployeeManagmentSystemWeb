@@ -1,0 +1,144 @@
+@use "../../../../variables.scss" as *;
+
+@include messages-content();
+
+.input-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+::ng-deep .file-uploader {
+  .dx-fileuploader-wrapper {
+    padding: 0;
+
+    .dx-fileuploader-input-wrapper {
+      padding: 0;
+    }
+  }
+}
+
+/* Message Container */
+.message-container {
+  display: flex;
+  margin-bottom: 10px;
+  width: 100%;
+  &.sent {
+    flex-direction: end; /* Align sent messages to the right */
+    justify-content: flex-end;
+
+    .message {
+      background-color: var(--sent-message-bg);
+      align-self: flex-end;
+      @include card-shadow(); /* Ensure shadow is applied */
+    }
+  }
+
+  &.received {
+    flex-direction: end; /* Align received messages to the left */
+    justify-content: flex-start;
+
+    .message {
+      background-color: var(--received-message-bg);
+      align-self: flex-start;
+      @include card-shadow();
+    }
+  }
+
+  /* Avatar Styling */
+  user-avatar {
+    margin: 0 10px;
+
+    ::ng-deep .circle {
+      &[data-letters]::before {
+        width: 32px;
+        height: 32px;
+        border-radius: 16px;
+        flex-shrink: 0;
+        margin: 2px 5px;
+        font-size: 12px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  /* Message Box */
+  .message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 60%;
+    border: 0.5px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Additional shadow */
+
+    .message-title {
+      display: flex;
+      justify-content: space-between;
+
+      .subject {
+        font-weight: 700;
+        color: var(--base-text-color);
+      }
+    }
+
+    .message-text {
+      color: var(--base-text-color);
+    }
+  }
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 600px) {
+  .message-container {
+    flex-direction: column;
+    align-items: center;
+
+    .message {
+      max-width: 100%; /* Ensure messages take full width on small screens */
+    }
+  }
+  .receivedMessageBox{
+    display: flex;
+  }
+  .sentMessageBox{
+    display: flex;
+    align-items: row-reverse;
+  }
+}
+.input-content {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #3498db; /* Fallback color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-icon span {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}

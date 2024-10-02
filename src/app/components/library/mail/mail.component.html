@@ -1,0 +1,69 @@
+<dx-scroll-view class="view-wrapper-scroll" height="100%">
+  <div id="isLoading" class="content-block dx-card">
+    <form (submit)="onFormSubmit($event)" class="responsive-paddings" style="border-radius: 8px; margin: 40px;">
+      <dx-form  [(formData)]="formData" labelMode="floating">
+      <dxi-item itemType="group" [colCount]="2" >
+        <dxi-item itemType="group" [colCount]="1"   >
+          <dxi-item itemType="group" [colCount]="1" caption="Select Recipients">
+            <dxi-item>
+              Select Employees/Department you want to send the mail to.
+            </dxi-item>
+            <dxi-item
+            dataField="emails"
+            [colSpan]="1"
+            editorType="dxTagBox"
+            [editorOptions]="recipientTagBoxOptions">
+            <dxo-label text="Reciever"></dxo-label>
+          </dxi-item>
+        </dxi-item>
+        <dxi-item itemType="group" [colCount]="1" caption="Select Email Subject">
+          <dxi-item dataField="subject" [colSpan]="1">
+            <dxi-validation-rule type="required" message="Subject is required"></dxi-validation-rule>
+            <dxo-label text="Subject"></dxo-label>
+          </dxi-item>
+        </dxi-item>
+      </dxi-item>
+      <dxi-item itemType="group" [colCount]="1" caption="Write your email content here">
+        <!-- <dxi-item>
+            <p>Write a</p>
+          </dxi-item> -->
+          <dxi-item>
+            <dx-html-editor [(value)]="formData.message" height="auto">
+              <dxo-toolbar [multiline]="isMultiline">
+                <dxi-item name="undo"></dxi-item>
+                <dxi-item name="redo"></dxi-item>
+                <dxi-item name="separator"></dxi-item>
+                <dxi-item name="bold"></dxi-item>
+                <dxi-item name="italic"></dxi-item>
+                <dxi-item name="underline"></dxi-item>
+                <dxi-item name="separator"></dxi-item>
+                <dxi-item name="orderedList"></dxi-item>
+                <dxi-item name="bulletList"></dxi-item>
+                <dxi-item name="separator"></dxi-item>
+                <dxi-item name="color"></dxi-item>
+                <dxi-item name="background"></dxi-item>
+                <dxi-item name="link"></dxi-item>
+              </dxo-toolbar>
+              <dxo-media-resizing [enabled]="true"></dxo-media-resizing>
+              <dxo-image-upload [tabs]="currentTab" fileUploadMode="base64"></dxo-image-upload>
+            </dx-html-editor>
+          </dxi-item>
+        </dxi-item>
+      </dxi-item>
+
+
+        <!-- Save and Back buttons -->
+        <dxi-item>
+          <div style="display: flex; justify-content: space-between;">
+            <dx-button text="Back" icon="back"></dx-button>
+            <dx-button text="Save" icon="save" (onClick)="onFormSubmit($event)"></dx-button>
+          </div>
+        </dxi-item>
+
+      </dx-form>
+    </form>
+  </div>
+</dx-scroll-view>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true"
+  [showPane]="true" [shading]="true" [hideOnOutsideClick]="false"></dx-load-panel>
