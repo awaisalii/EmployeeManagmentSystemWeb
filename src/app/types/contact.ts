@@ -16,7 +16,7 @@ type State = {
 };
 
 export interface ContactBase {
-  address: string;
+  address: string | number ;
   firstName: string;
   lastName: string;
   position: string;
@@ -41,7 +41,6 @@ export interface ContactBase {
 export interface Contact extends ContactBase {
   id: string,
   name: string,
-
   company: string,
   notes:Notes[],
   activities: Activity[],
@@ -62,7 +61,7 @@ export const newContact: ContactBase = {
   phoneNumber: '',
   email: '',
   image: '',
-  address: '',
+  address: 44,
   userName:'',
   country:'',
   birthDate: new Date(),
@@ -73,6 +72,7 @@ export const newContact: ContactBase = {
   passwordHash:'',
   city:'',
   state: '',
+
 }
 export interface MailData{
   emails:any[],

@@ -42,7 +42,6 @@ export class AuthService {
 
   private checkToken(): void {
     const token = localStorage.getItem('token');
-    debugger
     if (token) {
       const decoded: any = jwtDecode(token);
       this._user = {
@@ -50,16 +49,14 @@ export class AuthService {
         email: decoded.Email,
         name: decoded.UserName,
         avatarUrl: decoded.imagePath,
-        Role: decoded.Role,
+        Role: decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
       };
-      console.log(this._user)
       this.employeeService.getEmployeebyId(this._user.id).subscribe(
         response => {
           this._user.id=response.id,
           this._user.email=response.email,
           this._user.name=response.firstName +" "+response.lastName,
-          this._user.avatarUrl=response.imagePath,
-          this._user.Role=response.Role
+          this._user.avatarUrl=response.imagePath
         },
         error => {
           console.error('Error fetching employee data:', error);
@@ -98,7 +95,7 @@ export class AuthService {
               email: response.email,
               name: response.userName,
               avatarUrl: response.imagePath,
-              Role: response.Role,
+              Role:''
             };
             localStorage.setItem("token", response.token);
             this.router.navigate(["dashboard"]);

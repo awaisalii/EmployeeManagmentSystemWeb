@@ -64,7 +64,7 @@ export class AuthGService implements OnDestroy {
   }
 
   public async reauthMe(personId: string | null): Promise<void> {
-    if (!personId) return; // Handle case where personId is null
+    if (!personId) return;
     try {
       await this.signalService.hubConnection.invoke("reauthMe", personId);
       this.signalService.toastr.info("Re-authentication attempt");

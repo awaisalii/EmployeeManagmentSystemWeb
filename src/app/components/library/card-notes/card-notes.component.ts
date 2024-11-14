@@ -23,17 +23,22 @@ import { EventEmitter } from 'stream';
 })
 export class CardNotesComponent implements OnInit {
   @Input() user: string;
-
+  @Input() isTask:boolean;
   @Input() items: any[];
   nodeText = '';
   taskId:any;
   userId:any;
   constructor(private notesService:NotesService,private router:Router){
-
   }
 
   ngOnInit(): void {
-    this.nodeText;
+    if(!this.isTask){
+      this.notesService.getUserNotes(this.user).subscribe(
+        response=>{
+          this.items=response;
+        }
+      )
+    }
   }
 
 

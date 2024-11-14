@@ -27,6 +27,7 @@ export class EmployeeDetailsComponent {
   contactName = 'Loading...';
 
   isLoading = false;
+  employeeId:string;
 
   constructor(private employeeService:EmployeeService,private router:Router) {
   }
@@ -38,10 +39,20 @@ export class EmployeeDetailsComponent {
   loadData = () => {
     const segments = this.router.url.split('/');
     const overviewIndex = segments.indexOf('overview');
-    const id =segments[overviewIndex + 1];
-    this.employeeService.getEmployeebyId(id).subscribe(
+    this.employeeId=segments[overviewIndex + 1];
+    this.employeeService.getEmployeebyId(this.employeeId).subscribe(
       response=>{
+        if(response.status=="1"){
+          response.status="Employee"
+        }else{
+          if(response.status=="2"){
+            response.status="Trainee"
+          }else{
+            response.status="Intern"
+          }
+        }
         this.contactData=response;
+
         this.contactNotes=response.notes;
       }
     )

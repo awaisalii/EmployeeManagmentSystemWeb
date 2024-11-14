@@ -32,7 +32,7 @@ export class EmployeeComponent implements OnInit {
 
   isPanelOpened = false;
 
-  dataSource:Contact[];
+  dataSource:any[];
   isAddContactPopupOpened = false;
 
   userId: number;
@@ -69,18 +69,42 @@ export class EmployeeComponent implements OnInit {
       this.userId = null;
     }
   };
-
+  statusFunc(e:any){
+    if(e==1){
+      return "Employee"
+    }
+    if(e===2){
+      return "Trainee"
+    }else{
+      return "Intern"
+    }
+  }
+  formatPhoneNumber(phoneNumber: string): string {
+    if (!phoneNumber) return '';
+    return `+92 (${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6)}`;
+  }
   onPinnedChange = () => {
     this.dataGrid.instance.updateDimensions();
   };
 
   filterByStatus = (e: DxDropDownButtonTypes.SelectionChangedEvent) => {
     const { item: status }: { item: any } = e;
-
     if (status === 'All') {
       this.dataGrid.instance.clearFilter();
     } else {
-      this.dataGrid.instance.filter(['status', '=', status]);
+      switch (status){
+          case "Employee":
+            this.dataGrid.instance.filter(['status', '=', "1"]);
+             break;
+          case "Trainee":
+            this.dataGrid.instance.filter(['status', '=', "2"]);
+            break;
+          case "Intern":
+              this.dataGrid.instance.filter(['status', '=', "3"]);
+              break;
+          default:
+            this.dataGrid.instance.clearFilter();
+      }
     }
   };
 
@@ -133,20 +157,20 @@ export class EmployeeComponent implements OnInit {
   }
   assignedToTemplate(cellInfo: any): string {
     if (cellInfo.data.assignedTo) {
-      return cellInfo.data.assignedTo.firstName + " " + cellInfo.data.assignedTo.lastName;
+      return cellInfo.data.assignedTo;
     } else{
       return 'Self Lead'
     }
   }
 
 
-  SalariedTemplate(e){
-    let htmlContent: string;
-  if (e.data.salaried === true) {
-      htmlContent = `<div class="trueSalaried"  >True</div>`;
-  } else {
-      htmlContent = `<div class="FalseSalaried""> False</div>`;
-  }
-  return htmlContent;
-  }
+  // SalariedTemplate(e){
+  //   let htmlContent: string;
+  // if (e.data.salaried === true) {
+  //     htmlContent = `<div class="trueSalaried"  >True</div>`;
+  // } else {
+  //     htmlContent = `<div class="FalseSalaried""> False</div>`;
+  // }
+  // return htmlContent;
+  // }
 }

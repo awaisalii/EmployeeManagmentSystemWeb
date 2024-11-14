@@ -44,7 +44,8 @@ export class ContactCardsComponent implements AfterViewInit {
 
     @Input() isLoading: boolean;
     ngAfterViewInit(): void {
-      console.log(this.contactName)
+      setTimeout(() => {
+      }, 5000);
       this.isLoading;
     }
 }

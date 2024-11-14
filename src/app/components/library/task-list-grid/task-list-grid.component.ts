@@ -115,9 +115,9 @@ export class TaskListGridComponent implements OnChanges {
   };
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.log("object")
     if (changes.dataSource) {
-      this.tasks = changes.dataSource.currentValue.filter((item) => !!item.status && !!item.priority);
+      this.tasks = changes.dataSource.currentValue;
+      // this.tasks = changes.dataSource.currentValue.filter((item) => !!item.status && !!item.priority);
     }
   };
 

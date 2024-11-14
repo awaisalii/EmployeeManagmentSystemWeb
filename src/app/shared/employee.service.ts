@@ -22,13 +22,13 @@ export class EmployeeService {
 
 
 
-  getEmployee(): Observable<Contact[]> {
+  getEmployee(): Observable<any[]> {
     const token = localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
     const endpointUrl = `${this.url}/User`;
-    return this.httpClient.get<Contact[]>(endpointUrl, { headers });
+    return this.httpClient.get<any[]>(endpointUrl, { headers });
   }
 
   getEmployeebyId(id: string): Observable<Contact> {

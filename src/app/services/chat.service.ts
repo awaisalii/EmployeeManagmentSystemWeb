@@ -47,14 +47,14 @@ export class ChatService {
     }
   }
 
-  public addGroupMessageListener(callback: (message: { content: string, sender: string, timestamp: Date }) => void) {
+  public addGroupMessageListener(callback: (message) => void) {
     if (!this.hubConnection) {
       console.error('SignalR hub connection is not established.');
       return;
     }
     this.hubConnection.on('ReceiveGroupMessage', (message) => {
-      console.log("Received message:", message); // Should log the message object
-      callback(message); // Use the object structure
+      console.log("Received message:", message);
+      callback(message);
     });
   }
 
@@ -68,7 +68,6 @@ export class ChatService {
 
 
   public joinTaskGroup(taskId: string) {
-    debugger
     this.hubConnection?.invoke('JoinTaskGroup', taskId).catch((err) => console.error(err));
   }
 

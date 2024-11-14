@@ -11,6 +11,7 @@
       <card-activities
         [activities]="activities"
         [showBy]="true"
+        [user]="contactName"
         [isLoading]="isLoading"
       ></card-activities>
     </dxi-item>
@@ -21,7 +22,7 @@
       ></card-opportunities>
     </dxi-item> -->
     <dxi-item title="Notes">
-      <card-notes [user]="contactName" [items]="notes"></card-notes>
+      <card-notes [user]="contactName"></card-notes>
     </dxi-item>
     <dxi-item title="Messages">
       <card-messages [user]="contactName" [items]="messages"></card-messages>

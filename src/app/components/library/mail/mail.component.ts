@@ -69,13 +69,11 @@ export class MailComponent implements OnInit  {
   }
   }
   sendButtonClick(e){
-    console.log(e);
   }
   textButtonClick(e){
 
   }
 
   onFormSubmit(e){
-    console.log(this.formData)
   }
 }

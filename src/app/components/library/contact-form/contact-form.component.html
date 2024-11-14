@@ -16,10 +16,11 @@
       labelMode="floating"
       [class.view-mode]="!isEditing"
     >
+
        <dxi-item cssClass="accent" itemType="group" [colCount]="2">
         <dxo-col-count-by-screen [xs]="2"></dxo-col-count-by-screen>
-         <dxi-item cssClass="accent">
-          <div *dxTemplate>
+         <dxi-item cssClass="accent"  (click)="triggerFileUpload()" >
+          <div *dxTemplate (click)="triggerFileUpload()" >
             <form-photo [link]="contactData.imagePath" [size]="184"></form-photo>
           </div>
         </dxi-item>
@@ -52,17 +53,8 @@
             ></form-textbox>
           </dxi-item>
         </dxi-item>
-
-         <dxi-item cssClass="accent">
-          <form-textbox
-            *dxTemplate
-            label="Position"
-            [(value)]="contactData.position"
-            [isEditing]="isEditing"
-          ></form-textbox>
-        </dxi-item>
-         <dxi-item  cssClass="accent">
-          <div *dxTemplate cssClass="accent" >
+        <dxi-item   >
+          <div *dxTemplate  >
             <dx-select-box
             label="Assigned To"
             stylingMode="filled"
@@ -73,6 +65,20 @@
             >
             </dx-select-box>
           </div>
+        </dxi-item>
+
+        <dxi-item style="display: none;" (click)="triggerFileUpload()">
+          <div *dxTemplate>
+            <input style="display: none;" type="file" #fileInput (change)="onFileSelected($event)" />
+          </div>
+        </dxi-item>
+        <dxi-item cssClass="accent">
+          <form-textbox
+            *dxTemplate
+            label="Position"
+            [(value)]="contactData.position"
+            [isEditing]="isEditing"
+          ></form-textbox>
         </dxi-item>
 
 
@@ -131,12 +137,13 @@
          <dxi-item cssClass="accent">
           <div *dxTemplate>
             <form-textbox
-              mask="+1(000)000-0000"
-              label="Phone"
-              [(value)]="contactData.phoneNumber"
-              [isEditing]="isEditing"
-              [validators]="[]"
-            ></form-textbox>
+            label="Phone"
+            mask="88(000)000-0000"
+            [(value)]="contactData.phoneNumber"
+            [isEditing]="isEditing"
+            [validators]="[]"
+          ></form-textbox>
+
             <dx-button
               class="form-item-button"
               stylingMode="outlined"

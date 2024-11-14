@@ -1,3 +1,4 @@
+import { ActivitiesService } from './../../../services/activities.service';
 import { CommonModule } from '@angular/common';
 import {
   Component, NgModule, Input, SimpleChanges, OnInit, OnChanges,
@@ -15,20 +16,32 @@ import { Activity } from 'src/app/types/activities';
 })
 export class CardActivitiesComponent implements OnInit {
   @Input() activities: Activity[];
-
-
+  @Input() isTask:boolean;
+  @Input() user:string;
   @Input() showBy? = false;
 
   @Input() isLoading: boolean = false;
-
-  ngOnInit(): void {
-    this.isLoading=false;
-  }
-
   activityMenuItems: Array<{ text: string }> = [
     { text: 'View details' },
     { text: 'Delete' },
   ];
+  constructor(private ActivitiesService:ActivitiesService){
+
+  }
+
+  ngOnInit(): void {
+    this.isLoading=false;
+    if(!this.isTask)
+    {
+      this.ActivitiesService.getUserActivities(this.user).subscribe(
+        response=>{
+          this.activities=response;
+        }
+      )
+    }
+
+  }
+
 }
 
 @NgModule({

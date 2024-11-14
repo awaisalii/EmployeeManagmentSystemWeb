@@ -46,19 +46,13 @@ export class CardMessagesComponent implements OnInit,AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.groupChatId)
     this.chatService.startConnection();
     if(this.groupChatId!=null){
       this.ActivitiesService.getGroupMessages(this.groupChatId).subscribe(response=>{
         this.messages=response;
-        console.log(response)
-
-        debugger
       })
       this.chatService.addGroupMessageListener((message) => {
-        console.log(message);
-        debugger
-        this.messages.push(message);
+          this.messages.push(message);
         setTimeout(() => {
           this.scrollToBottom();
           this.hasscrolled=true
@@ -73,9 +67,9 @@ export class CardMessagesComponent implements OnInit,AfterViewInit {
         this.messages=response;
       })
       this.chatService.addPrivateMessageListener((message) => {
-        console.log(message);
-        debugger
-        this.messages.push(message);
+        if(message.senderId==this.user){
+          this.messages.push(message);
+        }
         setTimeout(() => {
           this.scrollToBottom();
           this.hasscrolled=true
@@ -84,16 +78,9 @@ export class CardMessagesComponent implements OnInit,AfterViewInit {
     }
 
 
-    setTimeout(() => {
-
-    }, 3000);
-
   }
   ngAfterViewInit(): void {
-    console.log(this.user)
-    setTimeout(() => {
-      console.log(this.groupChatId)
-    }, 5000);
+      this.AuthService;
   }
   sendMassage = async () => {
     if(this.user && this.messageText){
@@ -102,7 +89,6 @@ export class CardMessagesComponent implements OnInit,AfterViewInit {
         const fullPath=this.userImageUrl;
         const baseUrl = "https://localhost:7098/uploads/images/";
         const imageName = fullPath.replace(baseUrl, "");
-        console.log(imageName);
         const newMessage={
           user:this.currentUser,
           message:this.messageText,

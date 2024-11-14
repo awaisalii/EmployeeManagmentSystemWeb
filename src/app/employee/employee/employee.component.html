@@ -99,36 +99,47 @@
     [minWidth]="150"
   ></dxi-column>
   <dxi-column
-    dataField="phoneNumber"
-    caption="Phone"
-    [hidingPriority]="4"
-    mask="+92(000)000-0000"
-    [editorOptions]="{mask:'+92(000)000-0000'}"
-  ></dxi-column>
+  dataField="status"
+  caption="status"
+  alignment="left"
+    [width]="150"
+    [hidingPriority]="6"
+    cellTemplate="statusTemplate"
+    ></dxi-column>
       <dxi-column
         dataField="salaried"
         caption="Salaried"
         [hidingPriority]="1"
         [minWidth]="150"
-        cellTemplate="salaried"
       ></dxi-column>
 
       <dxi-column
-        dataField="assignedTo.userName"
+        dataField="assignedToId"
         caption="Assigned To"
         [hidingPriority]="3"
         cellTemplate="assignedToTemplate"
-      ></dxi-column>
+        ></dxi-column>
 
-
-      <dxi-column type="buttons" caption="Action">
-        <dxi-button name="view" icon="fa-solid fa-eye" [onClick]="goToEmployeeDetails" ></dxi-button>
+        <dxi-column
+        dataField="phoneNumber"
+        caption="Phone"
+        [hidingPriority]="4"
+        cellTemplate="phoneNumberTemplate"
+      >
       </dxi-column>
 
-      <div *dxTemplate="let cellInfo of 'assignedToTemplate'">
-        <div>
-          {{ assignedToTemplate(cellInfo) }}
+
+        <dxi-column type="buttons" caption="Action">
+          <dxi-button name="view" icon="fa-solid fa-eye" [onClick]="goToEmployeeDetails" ></dxi-button>
+        </dxi-column>
+
+        <div *dxTemplate="let cellInfo of 'assignedToTemplate'">
+          <div>
+            {{ assignedToTemplate(cellInfo) }}
+          </div>
         </div>
+      <div *dxTemplate="let cellInfo of 'statusTemplate'" >
+        <div  >{{statusFunc(cellInfo.data.status)}}</div>
       </div>
 
       <div *dxTemplate="let cellInfo of 'name'" class="name-template">
@@ -137,10 +148,12 @@
           <div class="position">{{ nameTemplatePosition(cellInfo)}}</div>
         </div>
       </div>
-      <div *dxTemplate="let e of 'salaried' "  >
+      <!-- <div *dxTemplate="let e of 'salaried' "  >
             <div   [innerHTML]="SalariedTemplate(e)" ></div>
+      </div> -->
+      <div *dxTemplate="let cellData of 'phoneNumberTemplate'">
+        <span>{{ formatPhoneNumber(cellData.data.phoneNumber)}}</span>
       </div>
-
       <div *dxTemplate="let cellInfo of 'cellStatus'">
         <contact-status [value]="cellInfo.data.status"></contact-status>
       </div>

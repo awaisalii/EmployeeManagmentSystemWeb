@@ -59,7 +59,7 @@
         <div class="right theme-dependent">
           <contact-cards
             [isLoading]="isLoading"
-            [contactName]="(contactData.id).toString()"
+            [contactName]="this.employeeId"
             [tasks]="contactData?.tasks"
             [activities]="contactData?.activities"
             [activeOpportunities]="activeOpportunities"

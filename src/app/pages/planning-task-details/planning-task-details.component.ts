@@ -47,14 +47,13 @@ export class PlanningTaskDetailsComponent implements OnInit {
   loadData = () => {
     this.taskService.getTask(this.taskId).subscribe((data) => {
       this.task=data
-      console.log(this.task)
       this.taskName=this.task.title;
       this.isLoading = false;
     });
   };
 
   ngOnInit(): void {
-   console.log("object")
+    this.loadData;
   }
 
   refresh = () => {

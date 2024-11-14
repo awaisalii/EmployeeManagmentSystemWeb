@@ -1,5 +1,5 @@
 import {
-  Component, EventEmitter, Input, NgModule, Output,
+  Component, EventEmitter, Input, NgModule, OnInit, Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DxSelectBoxModule, DxTextBoxModule } from 'devextreme-angular';
@@ -13,7 +13,7 @@ import { ThemeService } from 'src/app/services/theme.service';
   templateUrl: 'status-select-box.component.html',
   styleUrls: ['./status-select-box.component.scss'],
 })
-export class StatusSelectBoxComponent {
+export class StatusSelectBoxComponent implements OnInit {
   @Input() value: string;
 
   @Input() label = '';
@@ -30,12 +30,9 @@ export class StatusSelectBoxComponent {
 
   @Output() valueChange = new EventEmitter<string>();
 
-  constructor(private theme: ThemeService) {
-    setTimeout(
-      ()=>{
-         console.log(this.value)
-      },1000
-    )
+  constructor(private theme: ThemeService) {}
+  ngOnInit(): void {
+    console.log(this.value)
   }
 
 }

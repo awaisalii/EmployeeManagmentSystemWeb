@@ -55,6 +55,7 @@
             <dxi-item title="Activities">
               <card-activities
                 [isLoading]="isLoading"
+                [isTask]="true"
                 [activities]="task?.activities"
                 [showBy]="true"
               ></card-activities>
@@ -63,6 +64,7 @@
               <card-notes
               [items]="task?.notes"
               [user]="task?.owner"
+              [isTask]="true"
               ></card-notes>
             </dxi-item>
             <dxi-item title="Messages">

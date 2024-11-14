@@ -33,15 +33,15 @@ export class LoginFormComponent implements OnInit {
     stylingMode:'filled',
     mode: this.passwordMode,
     value: 'Awaissahib456/',
-    // buttons: [{
-    //   name: 'password',
-    //   location: 'after',
-    //   options: {
-    //     icon: 'info',
-    //     stylingMode:'text',
-    //     onClick: () => this.changePasswordMode(),
-    //   }
-    // }]
+    buttons: [{
+      name: 'password',
+      location: 'after',
+      options: {
+        icon: 'info',
+        stylingMode:'text',
+        onClick: () => this.changePasswordMode(),
+      }
+    }]
   }
 
   constructor(private authService: AuthService, private router: Router, private themeService: ThemeService) {

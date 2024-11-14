@@ -4,6 +4,7 @@
     #dataGrid
     [dataSource]="tasks"
     [columnAutoWidth]="true"
+    [headerFilter]="{ visible: true }"
   >
     <dxo-selection mode="multiple" showCheckBoxesMode="always"></dxo-selection>
 
@@ -16,19 +17,20 @@
     <dxi-column
       dataField="title"
       caption="Title"
-      [hidingPriority]="3"
+      [width]="200"
+      [hidingPriority]="0"
     ></dxi-column>
     <dxi-column
       dataField="startDate"
       dataType="date"
       caption="Start Date"
-      [hidingPriority]="1"
+      [hidingPriority]="2"
     ></dxi-column>
     <dxi-column
       dataField="dueDate"
       dataType="date"
       caption="Due Date"
-      [hidingPriority]="1"
+      [hidingPriority]="3"
     ></dxi-column>
     <dxi-column
       dataField="status"
@@ -38,7 +40,7 @@
     <dxi-column
       caption="Priority"
       dataField="priority"
-      [hidingPriority]="0"
+      [hidingPriority]="2"
     ></dxi-column>
     <dxi-column
       caption="Assigned To"
@@ -48,7 +50,7 @@
   </dx-data-grid>
 
   <dx-load-panel
-    [visible]="!currentTasks || isLoading"
+    [visible]="isLoading"
     [showPane]="false"
     container="#card-tasks"
     [position]="{ of: '#card-tasks' }"

@@ -30,7 +30,14 @@ export class AppHeaderComponent implements OnInit {
   title: string ="" ;
 
   userMenuItems = [
-  {
+    {
+      text:this.user.name,
+      icon:'fa-solid fa-user',
+      onClick: () => {
+        this.router.navigate(['/Profile'])
+      },
+    },
+    {
     text: 'Logout',
     icon: 'runner',
     onClick: () => {
@@ -41,7 +48,6 @@ export class AppHeaderComponent implements OnInit {
   constructor(private authService: AuthService , private router:Router ) { }
 
   ngOnInit() {
-    console.log("object")
     this.authService.getUser().then((e) =>{ this.user = e.data ;this.title=`HostLink : ${this.user.name}`; });
   }
 

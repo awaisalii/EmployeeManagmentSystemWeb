@@ -30,8 +30,8 @@ import { SelectBoxesService } from 'src/app/services/select-boxes.service';
 
 export class ContactNewFormComponent  implements OnInit   {
   newUser: any={
-
-  } ;
+    Image:''
+  };
   getSizeQualifier = getSizeQualifier;
   usersList ;
   statusSelectBox=contactStatusList;
@@ -47,7 +47,14 @@ export class ContactNewFormComponent  implements OnInit   {
 
 
   onFileUploaded(e) {
-    const fileInfo = e.file;
+    console.log(e)
+  }
+  onFileValueChanged(event: any): void {
+    if (event.value && event.value.length > 0) {
+      this.newUser.Image = event.value[0];
+    } else {
+      this.newUser.Image = '';
+    }
   }
   getNewContactData = ()=> ({ ...this.newUser })
 }

@@ -1,6 +1,7 @@
 import {
   Component, NgModule, Input,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -13,6 +14,7 @@ import {
   DxToolbarModule,
   DxValidatorModule,
   DxValidationGroupModule,
+  DxFileUploaderModule,
 } from 'devextreme-angular';
 import {
   ContactStatusModule,
@@ -34,11 +36,12 @@ import { SelectBoxesService } from 'src/app/services/select-boxes.service';
   styleUrls: ['./contact-form.component.scss'],
 })
 export class ContactFormComponent implements OnInit {
+  @ViewChild('fileInput', { static: false }) fileInput: any;
   @Input() contactData: any;
 
   @Input() isLoading: boolean;
-
-  savedData: Contact = null;
+  selectBoxValue;
+  savedData: any = null;
   usersList ;
 
   recipientTagBoxOptions: any = {};
@@ -46,6 +49,7 @@ export class ContactFormComponent implements OnInit {
   isEditing = false;
   constructor(private employeeService:EmployeeService , private router:Router, private selectBoxService:SelectBoxesService) { }
   ngOnInit() {
+    this.selectBoxValue=this.contactData.status;
     this.selectBoxService.getUserSelectBox().subscribe(response=>{
       this.usersList=response;
     }
@@ -59,6 +63,15 @@ export class ContactFormComponent implements OnInit {
 
   handleSaveClick({ validationGroup }: DxButtonTypes.ClickEvent) {
     this.savedData = { ...this.contactData };
+    if(this.savedData.status=="Trainee"){
+      this.savedData.status=2;
+    }else{
+      if(this.savedData.status=="Employee"){
+        this.savedData.status=1;
+      } else{
+        this.savedData.status=3;
+      }
+    }
     if(!validationGroup.validate().isValid) return;
     this.employeeService.UpdateEmployee(this.savedData).subscribe({
       complete:()=>{
@@ -70,6 +83,25 @@ export class ContactFormComponent implements OnInit {
     })
     this.isEditing = false;
     this.savedData = null;
+  }
+
+  onFileUploaded(e) {
+    console.log(e)
+  }
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.contactData.image = file;
+      if(this.isEditing==true){
+        const fileURL = URL.createObjectURL(file);
+        this.contactData.imagePath=fileURL
+      }
+    }
+  }
+  triggerFileUpload(): void {
+    if(this.isEditing){
+      this.fileInput.nativeElement.click();
+    }
   }
 
   sendEmail(e){
@@ -91,7 +123,7 @@ export class ContactFormComponent implements OnInit {
     DxNumberBoxModule,
     DxLoadPanelModule,
     DxValidationGroupModule,
-
+    DxFileUploaderModule,
     FormTextboxModule,
     ContactStatusModule,
     FormPhotoModule,

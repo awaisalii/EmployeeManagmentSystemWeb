@@ -6,7 +6,7 @@
   [readOnly]="!isEditing"
   [mask]="mask"
   [elementAttr]="{ class: 'form-editor' }"
-  [inputAttr]="{ class: 'form-editor-input' }"
+  [inputAttr]="{ class: 'form-editor-input', maxlength: 16 }"
   (onValueChanged)="valueChanged($event)"
 >
   <dx-validator [validationRules]="validators"></dx-validator>

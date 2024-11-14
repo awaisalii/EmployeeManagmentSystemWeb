@@ -21,16 +21,17 @@
       [md]="2"
       [lg]="2"
     ></dxo-col-count-by-screen>
-
     <dxi-item>
       <dx-file-uploader
-      [(value)]="newUser.Image"
-    [multiple]="false"
-    uploadMode="instantly"
-    [allowedFileExtensions]="['.jpg', '.png', '.jpeg']"
-    (onUploaded)="onFileUploaded($event)">
-    </dx-file-uploader>
+        [(value)]="newUser.Image"
+        [multiple]="false"
+        uploadMode="instantly"
+        [allowedFileExtensions]="['.jpg', '.png', '.jpeg']"
+        (onUploaded)="onFileUploaded($event )"
+        (onValueChanged)="onFileValueChanged($event)">
+      </dx-file-uploader>
     </dxi-item>
+<!--
     <dxi-item>
       <div *dxTemplate>
         <form-textbox
@@ -40,7 +41,7 @@
         >
         </form-textbox>
       </div>
-    </dxi-item>
+    </dxi-item> -->
     <dxi-item>
       <div *dxTemplate>
         <form-textbox

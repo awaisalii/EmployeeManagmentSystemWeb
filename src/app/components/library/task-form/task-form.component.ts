@@ -55,13 +55,10 @@ export class TaskFormComponent implements OnInit {
     this.isEditing = this.isCreateMode;
     this.selectBoxService.getUserSelectBox().subscribe(response=>{
       this.usersList=response;
-      console.log(this.usersList);
       if(this.task.assignedToId){
         this.task.assignedToId=this.task.assignedToId;
-        console.log("task",this.task.assignedToId);
       }else{
         this.task.assignedToId=this.usersList[0].id;
-        console.log("users",this.task.assignedToId);
       }
     }
     )
