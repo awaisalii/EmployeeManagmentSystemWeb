@@ -41,9 +41,16 @@ export class AuthService {
   }
 
   private checkToken(): void {
+    debugger
+
     const token = localStorage.getItem('token');
     if (token) {
       const decoded: any = jwtDecode(token);
+      const expiration=decoded.exp;
+      const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+      if (expiration < currentTime) {
+        this.logOut();
+      }
       this._user = {
         id: decoded.Id,
         email: decoded.Email,
@@ -177,6 +184,7 @@ export class AuthService {
 
   async logOut() {
     this.router.navigate(['/auth/login']);
+    localStorage.removeItem('token');
   }
 }
 

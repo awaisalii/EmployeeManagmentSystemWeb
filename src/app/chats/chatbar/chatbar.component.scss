@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  min-height: 100vh;
+}
+
+.container {
+ width: 100%;
+  display: flex;
+  flex: 1;
+}
+
+card-messages{
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  width: 350px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  // position: fixed;
+  // left: -550px;
+  // top: 0;
+  transition: left 0.3s ease;
+  // padding: 10px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h2 {
+  font-size: 20px;
+}
+
+.close-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.sidebar-search input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: transparent;
+}
+
+.sidebar-chats {
+  margin-top: 20px;
+}
+
+.sidebar-chats ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.chat-item:hover {
+  background-color: #115FA3;
+  // background-color: #f1f1f1;
+  color: whitesmoke;
+}
+
+.chat-item img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-name {
+  font-weight: bold;
+  display: block;
+}
+
+.chat-message {
+  font-size: 12px;
+  color: #777;
+}
+
+.chat-area {
+  margin-left: 250px;
+  padding: 20px;
+  flex: 1;
+}
+
+.chat-header h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.chat-messages {
+  margin-bottom: 20px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  max-width: 60%;
+  clear: both;
+}
+
+.received {
+  background-color: #e5e5e5;
+  float: left;
+  margin-left: 10px;
+}
+
+.sent {
+  background-color: #0078d4;
+  color: white;
+  float: right;
+  margin-right: 10px;
+}
+
+.chat-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-input input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.send-btn {
+  padding: 10px;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  background-color: #005fa3;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      left: -250px;
+  }
+
+  .sidebar-toggle {
+      display: block;
+  }
+
+  .chat-area {
+      margin-left: 0;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="container"  >
+  <div [ngStyle]="{'width':sidebarWidth}" style=" transition: 0.5s ease-in-out;" >
+    <div id="sidebar"  class="sidebar">
+      <div class="sidebar-header">
+      </div>
+      <div style="padding: 7px;" >
+        <dx-button stylingMode="text" icon="menu" (click)="toggleSidebar()"></dx-button>
+      </div>
+      <!-- <div class="sidebar-search" >
+        <input type="text" placeholder="Search or start new chat">
+      </div> -->
+      <div class="sidebar-chats">
+        <ul>
+          <li *ngFor="let item of chats" class="chat-item"  role="button" (click)="changeChat(item.id)" >
+            <img height="40px" width="40px" [src]="item.imagePath" alt="User">
+            <div  >
+              <span class="chat-name">{{ item.firstName + " " + item.lastName }}</span>
+              <small>{{item.position}}</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <card-messages></card-messages>
+</div>

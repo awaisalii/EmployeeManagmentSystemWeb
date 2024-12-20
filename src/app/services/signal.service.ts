@@ -23,10 +23,10 @@ export class SignalService {
 
   startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("https://localhost:7098/toastr", {
-        skipNegotiation: true,
-        transport: signalR.HttpTransportType.WebSockets
-    })
+    .withUrl("https://localhost:7179/updateHub", {
+      skipNegotiation: true,
+      transport: signalR.HttpTransportType.WebSockets
+  })
     .build();
 
     this.hubConnection
@@ -49,7 +49,7 @@ export class SignalService {
   askServerListener() {
     console.log("Ask Server Listener");
     this.hubConnection.on("Notification", (someText) => {
-      notify(someText,"success",2000);  
+      notify(someText,"success",2000);
     });
   }
 }

@@ -80,6 +80,14 @@ const routes: Routes = [
         component:NotificationsComponent
       },
       {
+        path:'chats',
+        loadChildren: ()=> import ('./chats/chats.module').then(m=>m.ChatsModule)
+      },
+      {
+        path:'attendence',
+        loadChildren : ()=> import('./attendence/attendence.module').then(m=>m.AttendenceModule)
+      },
+      {
         path: '**',
         redirectTo: 'Tasks',
         pathMatch: 'full',

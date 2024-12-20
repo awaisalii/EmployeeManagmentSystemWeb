@@ -49,11 +49,13 @@ export class ContactFormComponent implements OnInit {
   isEditing = false;
   constructor(private employeeService:EmployeeService , private router:Router, private selectBoxService:SelectBoxesService) { }
   ngOnInit() {
-    this.selectBoxValue=this.contactData.status;
+    debugger
     this.selectBoxService.getUserSelectBox().subscribe(response=>{
+      console.log(response)
       this.usersList=response;
     }
-    )
+  )
+  this.selectBoxValue=this.contactData.status;
   }
 
   handleEditClick() {

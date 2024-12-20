@@ -26,5 +26,14 @@ export const navigation = [
     text:'Mail',
     path:'Mail',
     icon:'fa-solid fa-envelope'
+  },{
+    text:'Chats',
+    path:'chats',
+    icon:'message'
+  },
+  {
+    text:'attendence',
+    path:'attendence',
+    icon:'fa-solid fa-calendar-days'
   }
 ];

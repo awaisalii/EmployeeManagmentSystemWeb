@@ -48,7 +48,7 @@ export class AppHeaderComponent implements OnInit {
   constructor(private authService: AuthService , private router:Router ) { }
 
   ngOnInit() {
-    this.authService.getUser().then((e) =>{ this.user = e.data ;this.title=`HostLink : ${this.user.name}`; });
+    this.authService.getUser().then((e) =>{ this.user = e.data ;this.title=`LaxicalSolutions : ${this.user.name}`; });
   }
 
   notificationRoute(){

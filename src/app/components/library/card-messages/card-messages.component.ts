@@ -76,9 +76,25 @@ export class CardMessagesComponent implements OnInit,AfterViewInit {
         }, 1000);
       });
     }
-
-
   }
+
+  triggerChat(id:string){
+    debugger
+    this.ActivitiesService.getUserMessages(id).subscribe(response=>{
+      this.messages=response;
+      console.log(this.messages)
+    })
+    this.chatService.addPrivateMessageListener((message) => {
+      if(message.senderId==id){
+        this.messages.push(message);
+      }
+      setTimeout(() => {
+        this.scrollToBottom();
+        this.hasscrolled=true
+      }, 1000);
+    });
+  }
+
   ngAfterViewInit(): void {
       this.AuthService;
   }
@@ -86,14 +102,14 @@ export class CardMessagesComponent implements OnInit,AfterViewInit {
     if(this.user && this.messageText){
       this.chatService.sendPrivateMessage(this.user, this.messageText)
       .then(() => {
-        const fullPath=this.userImageUrl;
-        const baseUrl = "https://localhost:7098/uploads/images/";
-        const imageName = fullPath.replace(baseUrl, "");
+        // const fullPath=this.userImageUrl;
+        // const baseUrl = "https://localhost:7098/uploads/images/";
+        // const imageName = fullPath.replace(baseUrl, "");
         const newMessage={
           user:this.currentUser,
           message:this.messageText,
           date: new Date(),
-          imagePath:imageName
+          imagePath:this.userImageUrl
         }
         this.messages=[...this.messages,newMessage];
         this.hasscrolled=false;
