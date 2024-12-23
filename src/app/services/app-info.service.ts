@@ -5,7 +5,7 @@ export class AppInfoService {
   constructor() {}
 
   public get title() {
-    return 'Host Link';
+    return 'LexicalSolutions';
   }
 
   public get currentYear() {
