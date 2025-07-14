@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!auth/.*\\.(js|css|ico|png|jpg|jpeg|svg|woff|woff2)).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)\\.js",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    }
+  ]
+}
