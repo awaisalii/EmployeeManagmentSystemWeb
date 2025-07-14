@@ -1,15 +1,15 @@
 {
   "rewrites": [
     {
-      "source": "/((?!auth/.*\\.(js|css|ico|png|jpg|jpeg|svg|woff|woff2)).*)",
-      "destination": "/index.html"
+      "source": "/auth/((?!.*\\.(js|css|ico|png|jpg|jpeg|svg|woff|woff2)).*)",
+      "destination": "/auth/index.html"
     }
   ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/(.*)\\.js",
+      "source": "/auth/(.*)\\.js",
       "headers": [
         {
           "key": "Content-Type",
