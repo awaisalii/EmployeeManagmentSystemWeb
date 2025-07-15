@@ -27,17 +27,17 @@ const routes: Routes = [
       {
         path: 'reset-password',
         component: ResetPasswordFormComponent,
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path: 'create-account',
         component: CreateAccountFormComponent,
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path: 'change-password/:recoveryCode',
         component: ChangePasswordFormComponent,
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path: '**',
@@ -53,27 +53,27 @@ const routes: Routes = [
       {
         path:'Employee',
         loadChildren : ()=> import('./employee/employee.module').then(m=>m.EmployeeModule),
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path:'Tasks',
         loadChildren:()=>import('./tasks/tasks.module').then(m=>m.TasksModule),
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path:'Profile',
         loadChildren: ()=>import('./profile/profile.module').then(m=>m.ProfileModule),
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path:'dashboard',
         loadChildren: ()=>import('./dashboard/dashboard.module').then(m=>m.DashboardModule),
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path:'Mail',
         component:MailComponent,
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path:'Notifications',
