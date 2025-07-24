@@ -49,7 +49,7 @@ export class AuthService {
       const expiration=decoded.exp;
       const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
       if (expiration < currentTime) {
-        this.logOut();
+        // this.logOut();
       }
       this._user = {
         id: decoded.Id,
@@ -67,11 +67,11 @@ export class AuthService {
         },
         error => {
           console.error('Error fetching employee data:', error);
-          this.logOut();
+          // this.logOut();
         }
       );
     } else {
-      this.logOut();
+      // this.logOut();
     }
   }
 
